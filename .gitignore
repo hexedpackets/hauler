@@ -1,0 +1,11 @@
+/_build
+/deps
+/apps
+erl_crash.dump
+*.ez
+/rel
+*.tar.gz
+!rel/
+rel/*
+!rel/vm.args
+log/

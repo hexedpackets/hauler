@@ -1,0 +1,13 @@
+%{"aberth": {:git, "git://github.com/lastcanal/aberth.git", "c01ef316d408813996ec342da19d30da57ad8b3e", []},
+  "barrel": {:git, "git://github.com/hexedpackets/barrel_tcp.git", "84918745f57059137b5bd8976f2152a0dba883fc", []},
+  "conform": {:hex, :conform, "0.11.0"},
+  "consul": {:git, "git://github.com/hexedpackets/exconsul.git", "7ec9332823b9718b76024aeae9793c457537d40a", []},
+  "docker": {:git, "git://github.com/hexedpackets/docker-elixir.git", "0dbb551915d987be0d68d3dce5bf5f79a04c0438", []},
+  "exrm": {:hex, :exrm, "0.14.17"},
+  "goldrush": {:git, "git://github.com/DeadZen/goldrush.git", "71e63212f12c25827e0c1b4198d37d5d018a7fec", [tag: "0.1.6"]},
+  "hackney": {:hex, :hackney, "1.0.6"},
+  "httpoison": {:hex, :httpoison, "0.5.0"},
+  "idna": {:hex, :idna, "1.0.2"},
+  "lager": {:git, "http://github.com/basho/lager.git", "0df1dd4949133947841f2982420f264c741bc612", [tag: "2.0.2"]},
+  "poison": {:hex, :poison, "1.4.0"},
+  "ssl_verify_hostname": {:hex, :ssl_verify_hostname, "1.0.1"}}
