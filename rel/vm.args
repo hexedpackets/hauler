@@ -1,0 +1,23 @@
+## Name of the node
+-sname hauler
+
+## Hide the node by default
+-hidden
+
+## Cookie for distributed erlang
+-setcookie haulercluster
+
+## Heartbeat management; auto-restarts VM if it dies or becomes unresponsive
+## (Disabled by default..use with caution!)
+##-heart
+
+## Enable kernel poll and a few async threads
+##+K true
+##+A 5
+
+## Set the range of ports used by epmd
+-kernel inet_dist_listen_min 25000
+-kernel inet_dist_listen_max 25255
+
+## Tweak GC to run more often
+##-env ERL_FULLSWEEP_AFTER 10
