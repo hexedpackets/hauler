@@ -20,18 +20,41 @@ defmodule Hauler.Server do
   def register(config, targets), do: GenServer.call(server_name, {:register, config, targets})
 
 
+  @doc """
+  Creates and starts a Docker container. If the container already exists, nothing
+  will be changed.
+
+  name - Service name as found in Consul.
+  opts - `pull` and `verbose`, both as booleans.
+  """
   def handle_call({:start, name, opts}, _from, state) do
     pull = Keyword.get(opts, :pull, true)
     res = Hauler.Docker.start(name, pull) |> parse_inspect_result(opts[:verbose])
     {:reply, res, state}
   end
 
+  @doc """
+  Stops a running Docker container. If the opts arg contains `remove: true`, then
+  the container will also be deleted.
+
+  name - Service name as found in Consul.
+  opts - `remove` as a boolean.
+  """
   def handle_call({:stop, name, opts}, _from, state) do
     remove = Keyword.get(opts, :remove, true)
     res = Hauler.Docker.stop(name, remove)
     {:reply, res, state}
   end
 
+  @doc """
+  Creates and starts a new Docker container. If the container already exists,
+  the old one will be removed first.
+
+  name - Service name as found in Consul.
+  opts - `pull` as boolean to indicate whether to pull the latest version of the image.
+         `keep` as an integer indicating the number of previous images to keep.
+         `tag` as a string for which tag to pull if not using the default from Consul.
+  """
   def handle_call({:recreate, name, opts}, _from, state) do
     pull = Keyword.get(opts, :pull, true)
     keep = Keyword.get(opts, :keep, 2)
@@ -48,22 +71,43 @@ defmodule Hauler.Server do
     {:reply, res, state}
   end
 
+  @doc """
+  Lists all running Docker containers.
+  """
   def handle_call(:list, _from, state) do
     res = Docker.Containers.list
     {:reply, res, state}
   end
 
+  @doc """
+  Lookup information about a currently running container.
+
+  name - Service name as found in Consul.
+  opts - `verbose`, boolean of whether to show all inspect information or a
+                    stripped down version.
+  """
   def handle_call({:inspect, name, opts}, _from, state) do
     res = Hauler.Docker.Control.inspect(name)
     |> parse_inspect_result(opts[:verbose])
     {:reply, res, state}
   end
 
+  @doc """
+  Store a container configuration in Consul.
+
+  config - JSON configuration for the container.
+  targets - Node list of where to deploy the service.
+  """
   def handle_call({:register, config, targets}, _from, state) do
     res = Hauler.Docker.set_config(config, targets)
     {:reply, res, state}
   end
 
+  @doc """
+  Remove old images (ignoring tags).
+
+  keep - Integer of how many images to keep.
+  """
   def handle_cast({:cleanup, keep}, state) do
     Hauler.Docker.Control.cleanup(keep)
     {:noreply, state}
