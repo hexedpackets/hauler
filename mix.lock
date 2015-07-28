@@ -1,5 +1,5 @@
 %{"aberth": {:git, "git://github.com/lastcanal/aberth.git", "c01ef316d408813996ec342da19d30da57ad8b3e", []},
-  "barrel": {:git, "git://github.com/hexedpackets/barrel_tcp.git", "84918745f57059137b5bd8976f2152a0dba883fc", []},
+  "barrel": {:git, "git://github.com/benoitc-attic/barrel_tcp.git", "e689d0f4286b97462e0fda455f87501dc0ef4487", []},
   "conform": {:hex, :conform, "0.11.0"},
   "consul": {:git, "git://github.com/hexedpackets/exconsul.git", "7ec9332823b9718b76024aeae9793c457537d40a", []},
   "docker": {:git, "git://github.com/hexedpackets/docker-elixir.git", "0dbb551915d987be0d68d3dce5bf5f79a04c0438", []},

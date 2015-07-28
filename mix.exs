@@ -29,7 +29,7 @@ defmodule Hauler.Mixfile do
       {:poison, "~> 1.2"},
       {:exrm, "~> 0.14.16"},
       {:hackney, "~> 1.0.2", override: true},
-      {:barrel, github: "hexedpackets/barrel_tcp", override: true},
+      {:barrel, github: "benoitc-attic/barrel_tcp", override: true},
       {:aberth, github: "lastcanal/aberth"},
       {:docker, github: "hexedpackets/docker-elixir"},
     ]
