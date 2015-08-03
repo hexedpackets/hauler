@@ -60,6 +60,9 @@ defmodule Hauler.Server do
     keep = Keyword.get(opts, :keep, 2)
     tag = Keyword.get(opts, :tag)
 
+    :hackney.stop
+    :hackney.start
+
     service_ids = Consul.Agent.service_ids(name)
     Enum.each(service_ids, &(Consul.Agent.service_maint_enable(&1, "Deploying")))
 
