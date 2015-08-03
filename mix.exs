@@ -28,7 +28,7 @@ defmodule Hauler.Mixfile do
       {:consul, github: "hexedpackets/exconsul"},
       {:poison, "~> 1.2"},
       {:exrm, "~> 0.14.16"},
-      {:hackney, "~> 1.0.2", override: true},
+      {:hackney, "~> 1.3", override: true},
       {:barrel, github: "hexedpackets/barrel_tcp", override: true},
       {:aberth, github: "lastcanal/aberth"},
       {:docker, github: "hexedpackets/docker-elixir"},
