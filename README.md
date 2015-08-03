@@ -1,4 +1,4 @@
-## Hauler
+# Hauler
 
 Hauler is an Elixir application for controlling and monitoring Docker deployments in conjunction with Consul. It can be controlled using either Erlang RPC calls or [BERT-RPC](https://github.com/lastcanal/aberth).
 
@@ -12,6 +12,23 @@ Hauler performs tasks related to Docker management. Clients can:
 - stop and optionally destroy a container
 - recreate a container from a new image
 
+## RPCs
+RPCs are the primary way of interacting with Hauler, either from a remote Erlang process or with BERT-RPC. All functions are under the `Hauler.Server` module; from an RPC this should be called as `Elixir.Hauler.Server`. The functions available are:
+
+```elixir
+start/2 - Creates and starts a Docker container. If the container already exists, nothing will be changed.
+stop/2 - Stops and optionally deletes a running Docker container.
+recreate/2 - Creates and starts a new Docker container. If the container already exists, the old one will be removed first.
+list/0 - Lists all running Docker containers.
+inspect/2 - Lookup information about a currently running container.
+cleanup/0 - Remove old images (ignoring tags). Only the most recent is kept.
+cleanup/1 - Remove old images (ignoring tags) with a specified number to keep.
+register/1 - Store a container configuration in Consul.
+register/2 - Store a container configuration in Consul, with a static list of nodes for deploying.
+```
+
+## Docker configuration
+Hauler uses [docker-elixir](https://github.com/hexedpackets/docker-elixir) to work with the Docker API and convert JSON into a format usable with the API.
 
 ## Releasing
 ### Build
